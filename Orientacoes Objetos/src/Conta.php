@@ -2,9 +2,22 @@
 
 class Conta
 {
-     public $cpf;
-     public $namebankHolder;
-     public $balance = 0;
+    private $titular;
+    private $balance;
+    private static $numberAccount = 0;
+
+    public function __construct(Titular $titular)
+    {
+        $this->titular = $titular;
+        $this->balance = 0;
+
+        self::$numberAccount++;
+     }
+
+     public function __destruct()
+     {
+         self::$numberAccount--;
+     }
 
      public function withdrawn(float $valuWithdrawn): void
      {
@@ -44,6 +57,27 @@ class Conta
              $account->deposit($valueTransfer);
          }
      }
+
+    public static function getNumberAccount(): int
+    {
+        return self::$numberAccount;
+    }
+
+    public function getBalance(): int
+    {
+        return $this->balance;
+    }
+
+
+    public function getTitularName(): string
+    {
+        return $this->titular->getName();
+    }
+
+    public function getTitularCpf(): string
+    {
+        return $this->titular->getCpf();
+    }
 
 }
 
