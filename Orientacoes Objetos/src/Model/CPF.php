@@ -1,7 +1,19 @@
 <?php
 
-class CPF{
+ namespace Projeto\Alura\Model;
 
+
+use Projeto\Alura\Interfaces\acess;
+
+/**
+ * Class CPF
+ * @package Projeto\Alura\Model
+ * @property-read string $cpfNumber;
+ */
+
+final class CPF{
+
+    use acess;
     private $cpfNumber;
 
     public function __construct(string $cpfNumber){

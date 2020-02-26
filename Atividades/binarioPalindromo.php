@@ -23,15 +23,15 @@ function verificacao($d)
 }
 
 
-$numeroBinario = 111000111;
-$c = strlen($numeroBinario);
-$inverso = inverter($numeroBinario);
+$numero = 111000111;
+$c = strlen($numero);
+$inverso = inverter($numero);
 
 
-if ($numeroBinario === $inverso) {
+if ($numero === $inverso) {
     echo "Decimal é um palidromo";
 }
-if ($numeroBinario !== $inverso) {
+if ($numero !== $inverso) {
     echo "Decimal não é um palidromo";
 
 }

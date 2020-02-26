@@ -8,7 +8,7 @@ function inverter($valor){
 }
 
 
-$numero = 5;
+$numero = 50;
 $t = "";
 
 for($i=0; $i <= 20; $i++){
@@ -22,4 +22,16 @@ for($i=0; $i <= 20; $i++){
 
     $numero = intval($numero) / 2;
 }
+
+$inverso = inverter($t);
+
+
+if ($t === $inverso) {
+    echo "Decimal é um palidromo".PHP_EOL;
+}
+if ($t !== $inverso) {
+    echo "Decimal não é um palidromo".PHP_EOL;
+
+}
+
 echo "Versão binaria: " . inverter($t) . PHP_EOL ;

@@ -1,10 +1,15 @@
 <?php
 
-class Conta
+namespace Projeto\Alura\Model\Conta;
+use Projeto\Alura\Model\Conta\Titular;
+use Projeto\Alura\Model\CPF;
+
+
+abstract class Conta
 {
-    private $titular;
-    private $balance;
-    private static $numberAccount = 0;
+    protected $titular;
+    protected $balance;
+    protected static $numberAccount = 0;
 
     public function __construct(Titular $titular)
     {
@@ -21,6 +26,8 @@ class Conta
 
      public function withdrawn(float $valuWithdrawn): void
      {
+         $tarifaSaque = $valuWithdrawn * $this->percentTarifa();
+         $valuWithdrawn = $valuWithdrawn + $tarifaSaque;
          if ($valuWithdrawn > $this -> balance)
          {
 
@@ -45,18 +52,7 @@ class Conta
          }
      }
 
-     public function transfer(Conta $account,float $valueTransfer): void
-     {
-         if ($valueTransfer > $this->balance)
-         {
-             echo "Valor indisponível para transferência";
-         }
-         if ($valueTransfer > 0 && $this->balance >= $valueTransfer)
-         {
-             $this->withdrawn($valueTransfer);
-             $account->deposit($valueTransfer);
-         }
-     }
+
 
     public static function getNumberAccount(): int
     {
@@ -71,13 +67,16 @@ class Conta
 
     public function getTitularName(): string
     {
-        return $this->titular->getName();
+        return $this->titular->getNome();
     }
 
-    public function getTitularCpf(): string
+    public function getTitularCpf()
     {
         return $this->titular->getCpf();
     }
+
+    abstract protected function percentTarifa():float;
+
 
 }
 

@@ -3,7 +3,6 @@ $binario = 1110001110011;
 $c = $binario;
 $valor = 0;
 
-
 for($i=0; $i < strlen($binario); $i++) {
 
     $k = $c % 10;

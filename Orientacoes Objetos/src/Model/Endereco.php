@@ -1,8 +1,20 @@
 <?php
 
+namespace Projeto\Alura\Model;
 
-class Endereco
+use Projeto\Alura\Interfaces\acess;
+
+/**
+ * Class Endereco
+ * @package Projeto\Alura\Model
+ * @property string $city
+ * @property string $bairro
+ * @property string $rua
+ * @property string $numero
+ */
+final class Endereco
 {
+    use acess;
     private $city;
     private $bairro;
     private $rua;
@@ -15,6 +27,11 @@ class Endereco
         $this->bairro = $bairro;
         $this->rua = $rua;
         $this->numero = $numero;
+    }
+
+    public function __toString(): string
+    {
+        return "Logradouro: $this->rua,  Numero: $this->numero, Bairro: $this->bairro, Cidade: $this->city";
     }
 
     public function getBairro(): string
@@ -35,5 +52,12 @@ class Endereco
     public function getRua(): string
     {
         return $this->rua;
+    }
+
+
+
+    public function __set($name, $value)
+    {
+       $this->$name = $value;
     }
 }
